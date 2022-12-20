@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "hexlet-code"
+version = "0.1.0"
+description = "This project is a compare tool to find and list differences in files of various formats"
+authors = ["Shestakov Artyom"]
+readme = "README.md"
+packages = [{include = "gendiff"}]
+
+
+[tool.poetry.scripts]
+gendiff = "scripts.gendiff:main"
+
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.0"
+pytest-cov = "^4.0.0"
+flake8 = "^6.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
