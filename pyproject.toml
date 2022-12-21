@@ -8,7 +8,7 @@ packages = [{include = "gendiff"}]
 
 
 [tool.poetry.scripts]
-gendiff = "scripts.gendiff:main"
+gendiff = "gendiff.scripts.gendiff:main"
 
 
 [tool.poetry.dependencies]
