@@ -6,7 +6,8 @@ import os
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Compares two configuration files and shows a difference.')
+    parser = argparse.ArgumentParser(description='Compares two configuration'
+                                     'files and shows a difference.')
     parser.add_argument('file_path1', type=str)
     parser.add_argument('file_path2', type=str)
     parser.add_argument('-f', '--format', type=str, help='set format of output')
@@ -33,7 +34,8 @@ def generate_diff(file_path1, file_path2):
         elif key not in file2:
             output_string += f'- {key}: {new_dict[key]}{new_line}'
         else:
-            output_string += f'- {key}: {file1[key]}{new_line}+ {key}: {new_dict[key]}{new_line}'
+            output_string += f'- {key}: {file1[key]}{new_line}'
+            output_string += f'+ {key}: {new_dict[key]}{new_line}'
     output_string = '{\n' + output_string + '}'
     return output_string
 
