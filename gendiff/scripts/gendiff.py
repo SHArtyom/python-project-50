@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 import argparse
-import json
-from copy import deepcopy
 import os
 from gendiff.generate_diff import generate_diff
+
 
 def main():
     parser = argparse.ArgumentParser(description='Compares two configuration'
