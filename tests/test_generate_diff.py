@@ -67,12 +67,13 @@ expected_tree = """
         }
         fee: 100500
     }
-}"""
+}
+"""
 
 
 def test_generate_diff_plain():
     assert generate_diff(file1, file2) == expected_plain[1:-1]
     assert generate_diff(file3, file4) == expected_plain[1:-1]
-    assert generate_diff(file5, file6) == expected_tree
-    assert generate_diff(file7, file8) == expected_tree
+    assert generate_diff(file5, file6) == expected_tree[1:-1]
+    assert generate_diff(file7, file8) == expected_tree[1:-1]
 
