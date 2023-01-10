@@ -43,15 +43,13 @@ def build_diff(old_data, new_data, diff={}):
         elif new_data[key] == old_data[key]:
             diff[key] = {'value': format_data(new_data[key]),
                          'status': 'unchanged'}
+        elif type(old_data[key]) == dict and type(new_data[key]) == dict:
+            diff[key] = {}
+            build_diff(old_data[key], new_data[key], diff[key])
         else:
-            if type(old_data[key]) == dict and type(new_data[key]) == dict:
-             #if isinstance(old_data[key], dict) and isinstance(new_data[key], dict):
-                diff[key] = {}
-                build_diff(old_data[key], new_data[key], diff[key])
-            else:
-                diff[key] = {'value': {'old': format_data(old_data[key]),
-                                       'new': format_data(new_data[key])},
-                             'status': 'changed'}
+            diff[key] = {'value': {'old': format_data(old_data[key]),
+                                   'new': format_data(new_data[key])},
+                         'status': 'changed'}
     return sort_diff(diff)
 
 
@@ -75,22 +73,22 @@ def diff_to_dict(diff):
 def stylish(value, depth=0):
     result = '{\n'
     if not isinstance(value, dict):
-        return str(value)
+        return value
     for key in value:
         if '+' in str(key) or '-' in str(key):
-            result += f"{' ' * (depth + 2)}{str(key)}: "
+            result += f"{' ' * (depth + 2)}{key}: "
         else:
-            result += f"{' ' * (depth + 2)}  {str(key)}: "
+            result += f"{' ' * (depth + 2)}  {key}: "
         if isinstance(value[key], dict):
             result += f"{stylish(value[key], depth + 4)}\n"
         else:
-            result += f"{str(value[key])}\n"
+            result += f"{value[key]}\n"
     return result + depth * ' ' + '}'
 
 
 def generate_diff(file_path1, file_path2, formatter=stylish):
     file1, file2 = get_data(file_path1, file_path2)
-    diff = build_diff(file1, file2)
+    diff = build_diff(file1, file2, {})
     dict_diff = diff_to_dict(diff)
     return formatter(dict_diff)
 
