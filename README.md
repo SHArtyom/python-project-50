@@ -10,8 +10,8 @@ ____
 This package is a tool to search and list differences between JSON and YAML files
 
 ## Program demo
-[![asciicast](https://asciinema.org/a/ZeE9qGo90bBKHLxejH9He9jUz.svg)](https://asciinema.org/a/ZeE9qGo90bBKHLxejH9He9jUz)
-[![asciicast](https://asciinema.org/a/qCBNfo6yDoxKasglaCtG7XpIF.svg)](https://asciinema.org/a/qCBNfo6yDoxKasglaCtG7XpIF)
+
+[![asciicast](https://asciinema.org/a/MgPa1MH5ezDtJHDE5X06OU4zv.svg)](https://asciinema.org/a/MgPa1MH5ezDtJHDE5X06OU4zv)
 
 ## Minimum requirements
 
