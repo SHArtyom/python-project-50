@@ -11,7 +11,7 @@ This package is a tool to search and list differences between JSON and YAML file
 
 ## Program demo
 
-[![asciicast](https://asciinema.org/a/MgPa1MH5ezDtJHDE5X06OU4zv.svg)](https://asciinema.org/a/MgPa1MH5ezDtJHDE5X06OU4zv)
+[![asciicast](https://asciinema.org/a/w4808uTcp1Qt7gVR9XHylgGyx.svg)](https://asciinema.org/a/w4808uTcp1Qt7gVR9XHylgGyx)
 
 ## Minimum requirements
 
