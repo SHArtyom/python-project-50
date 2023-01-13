@@ -53,7 +53,7 @@ def build_diff(old_data, new_data, diff={}):
     return sort_diff(diff)
 
 
-def generate_diff(file_path1, file_path2, formatter):
+def generate_diff(file_path1, file_path2, formatter=stylish):
     file1, file2 = get_data(file_path1, file_path2)
     diff = build_diff(file1, file2, {})
     return formatter(diff)
