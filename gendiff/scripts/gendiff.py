@@ -6,6 +6,7 @@ from gendiff.formatters.plain import plain
 from gendiff.formatters.stylish import stylish
 from gendiff.formatters.json import format_as_json
 
+
 def main():
     args = parse_args()
     file1_path = os.path.abspath(args.file_path1)
