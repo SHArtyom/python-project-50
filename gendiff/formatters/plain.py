@@ -5,24 +5,30 @@ def format_complex(value):
         return f"'{value}'"
 
 
+def build_plain_string(status, path, value):
+    if status == 'removed':
+        return f"Property '{'.'.join(path)}' was removed" + '\n'
+    elif status == 'added':
+        return f"Property '{'.'.join(path)}' was added with value: "\
+               f"{format_complex(value)}" + '\n'
+    elif status == 'changed':
+        return f"Property '{'.'.join(path)}' was updated. "\
+               f"From {format_complex(value['old'])} to "\
+               f"{format_complex(value['new'])}" + '\n'
+    else:
+        return ''
+
+
 def plain(diff):
     def walk(diff, path, result):
         for key in diff:
             path.append(key)
-            if diff[key].get('status') == 'removed':
-                result += f"Property '{'.'.join(path)}' was removed" + '\n'
-            elif diff[key].get('status') == 'added':
-                result += f"Property '{'.'.join(path)}' was added with value: " \
-                          f"{format_complex(diff[key]['value'])}" + '\n'
-            elif diff[key].get('status') == 'changed':
-                result += f"Property '{'.'.join(path)}' was updated. From " \
-                          f"{format_complex(diff[key]['value']['old'])} to " \
-                          f"{format_complex(diff[key]['value']['new'])}" + '\n'
-            elif diff[key].get('status') == 'unchanged':
-                path.pop()
-                continue
-            else:
+            if not diff[key].get('status'):
                 result = walk(diff[key], path, result)
+            else:
+                status = diff[key].get('status')
+                value = diff[key]['value']
+                result += str(build_plain_string(status, path, value))
             path.pop()
         return result
     return walk(diff, [], '')

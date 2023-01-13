@@ -5,6 +5,7 @@ from gendiff.parser import parse_args
 from gendiff.formatters.plain import plain
 from gendiff.formatters.stylish import stylish
 
+
 def main():
     args = parse_args()
     file1_path = os.path.abspath(args.file_path1)

@@ -1,8 +1,6 @@
 import json
 import yaml
 from yaml import SafeLoader
-from gendiff.formatters.stylish import stylish
-from gendiff.formatters.plain import plain
 
 
 def get_data(file_path1, file_path2):

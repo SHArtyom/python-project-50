@@ -1,6 +1,3 @@
-import json
-
-
 def diff_to_dict(diff):
     diff_dict = {}
     for key in diff:
@@ -20,6 +17,7 @@ def diff_to_dict(diff):
 
 def stylish(diff):
     diff_dict = diff_to_dict(diff)
+
     def walk(value, depth=0):
         result = '{\n'
         if not isinstance(value, dict):
