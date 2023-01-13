@@ -3,6 +3,7 @@ import yaml
 from yaml import SafeLoader
 from gendiff.formatters.stylish import stylish
 
+
 def get_data(file_path1, file_path2):
     if '.json' in file_path1[-6:]:
         with open(file_path1, 'r') as f1:
