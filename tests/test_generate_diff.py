@@ -1,9 +1,5 @@
 from gendiff.build_diff import generate_diff
-from gendiff.formatters.plain import plain
-from gendiff.formatters.stylish import stylish
-from gendiff.formatters.json import format_as_json
 import os
-import json
 
 
 file1 = os.path.abspath('tests/fixtures/file1.json') #json flat old_data
@@ -32,11 +28,11 @@ with open(json_result, 'r') as result:
     expected_json = result.read()
 
 def test_generate_diff():
-    assert generate_diff(file1, file2, stylish) == expected_flat[:-1]
-    assert generate_diff(file3, file4, stylish) == expected_flat[:-1]
-    assert generate_diff(file5, file6, stylish) == expected_stylish[:-1]
-    assert generate_diff(file7, file8, stylish) == expected_stylish[:-1]
-    assert generate_diff(file5, file6, plain) == expected_plain
-    assert generate_diff(file7, file8, plain) == expected_plain
-    assert generate_diff(file5, file6, format_as_json) == expected_json[:-1]
-    assert generate_diff(file7, file8, format_as_json) == expected_json[:-1]
+    assert generate_diff(file1, file2, 'stylish') == expected_flat[:-1]
+    assert generate_diff(file3, file4, 'stylish') == expected_flat[:-1]
+    assert generate_diff(file5, file6, 'stylish') == expected_stylish[:-1]
+    assert generate_diff(file7, file8, 'stylish') == expected_stylish[:-1]
+    assert generate_diff(file5, file6, 'plain') == expected_plain[:-1]
+    assert generate_diff(file7, file8, 'plain') == expected_plain[:-1]
+    assert generate_diff(file5, file6, 'json') == expected_json[:-1]
+    assert generate_diff(file7, file8, 'json') == expected_json[:-1]
