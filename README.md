@@ -10,8 +10,17 @@ ____
 This package is a tool to search and list differences between JSON and YAML files
 
 ## Program demo
+Help message and flat structure processing
+[![asciicast](https://asciinema.org/a/ZeE9qGo90bBKHLxejH9He9jUz.svg)](https://asciinema.org/a/ZeE9qGo90bBKHLxejH9He9jUz)
 
-[![asciicast](https://asciinema.org/a/w4808uTcp1Qt7gVR9XHylgGyx.svg)](https://asciinema.org/a/w4808uTcp1Qt7gVR9XHylgGyx)
+Nested structure processing with stylish output
+[![asciicast](https://asciinema.org/a/0bXK8SsGKAjG2PfFhBTUGXrIK.svg)](https://asciinema.org/a/0bXK8SsGKAjG2PfFhBTUGXrIK)
+
+Nested structure processing with plain output
+[![asciicast](https://asciinema.org/a/qcMSZTi9eAi2qv1Tr7Bea7P2O.svg)](https://asciinema.org/a/qcMSZTi9eAi2qv1Tr7Bea7P2O)
+
+Nested structure processing with json output
+[![asciicast](https://asciinema.org/a/ARs22hAxq8ng7SocuxbDe1d0f.svg)](https://asciinema.org/a/ARs22hAxq8ng7SocuxbDe1d0f)
 
 ## Minimum requirements
 

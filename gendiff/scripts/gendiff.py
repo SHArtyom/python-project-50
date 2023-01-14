@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import os
-from gendiff.generate_diff import generate_diff
+from gendiff.build_diff import generate_diff
 from gendiff.parser import parse_args
 from gendiff.formatters.plain import plain
 from gendiff.formatters.stylish import stylish

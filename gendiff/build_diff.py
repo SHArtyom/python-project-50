@@ -32,7 +32,7 @@ def sort_diff(diff):
     return dict(sorted(diff.items()))
 
 
-def build_diff(old_data, new_data, diff={}):
+def make_diff(old_data, new_data, diff={}):
     merged_keys = old_data.keys() | new_data.keys()
     for key in merged_keys:
         if key not in new_data:
@@ -46,7 +46,7 @@ def build_diff(old_data, new_data, diff={}):
                          'status': 'unchanged'}
         elif type(old_data[key]) == dict and type(new_data[key]) == dict:
             diff[key] = {}
-            build_diff(old_data[key], new_data[key], diff[key])
+            make_diff(old_data[key], new_data[key], diff[key])
         else:
             diff[key] = {'value': {'old': format_data(old_data[key]),
                                    'new': format_data(new_data[key])},
@@ -56,7 +56,7 @@ def build_diff(old_data, new_data, diff={}):
 
 def generate_diff(file_path1, file_path2, formatter=stylish):
     file1, file2 = get_data(file_path1, file_path2)
-    diff = build_diff(file1, file2, {})
+    diff = make_diff(file1, file2, {})
     return formatter(diff)
 
 
