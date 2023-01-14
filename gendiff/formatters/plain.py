@@ -1,6 +1,9 @@
 def format_complex(value):
+    BOOL_TYPES = {'none', 'null', 'true', 'false'}
     if isinstance(value, dict):
         return '[complex value]'
+    elif value in BOOL_TYPES:
+        return value
     else:
         return f"'{value}'"
 
@@ -31,4 +34,4 @@ def plain(diff):
                 result += str(build_plain_string(status, path, value))
             path.pop()
         return result
-    return walk(diff, [], '')
+    return walk(diff, [], '').rstrip('\n')

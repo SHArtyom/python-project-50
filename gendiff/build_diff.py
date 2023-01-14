@@ -5,6 +5,7 @@ from gendiff.formatters.stylish import stylish
 from gendiff.formatters.plain import plain
 from gendiff.formatters.json import format_as_json
 
+
 def get_data(file_path1, file_path2):
     if '.json' in file_path1[-6:]:
         with open(file_path1, 'r') as f1:
