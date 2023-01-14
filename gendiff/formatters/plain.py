@@ -1,5 +1,5 @@
 def format_complex(value):
-    BOOL_TYPES = {'none', 'null', 'true', 'false'}
+    BOOL_TYPES = {'null', 'true', 'false', '0'}
     if isinstance(value, dict):
         return '[complex value]'
     elif value in BOOL_TYPES:
