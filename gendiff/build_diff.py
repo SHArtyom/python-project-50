@@ -2,7 +2,8 @@ import json
 import yaml
 from yaml import SafeLoader
 from gendiff.formatters.stylish import stylish
-
+from gendiff.formatters.plain import plain
+from gendiff.formatters.json import format_as_json
 
 def get_data(file_path1, file_path2):
     if '.json' in file_path1[-6:]:
@@ -54,10 +55,15 @@ def make_diff(old_data, new_data, diff={}):
     return sort_diff(diff)
 
 
-def generate_diff(file_path1, file_path2, formatter=stylish):
+def generate_diff(file_path1, file_path2, formatter='stylish'):
     file1, file2 = get_data(file_path1, file_path2)
     diff = make_diff(file1, file2, {})
-    return formatter(diff)
+    if formatter == 'plain':
+        return plain(diff)
+    elif formatter == 'json':
+        return format_as_json(diff)
+    else:
+        return stylish(diff)
 
 
 if __name__ == '__main__':
