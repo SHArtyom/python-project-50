@@ -28,15 +28,9 @@ def format_data(string):
     return output
 
 
-def sort_diff(diff):
-    for key in diff:
-        diff[key] = dict(sorted(diff[key].items()))
-    return dict(sorted(diff.items()))
-
-
 def make_diff(old_data, new_data, diff={}):
     merged_keys = old_data.keys() | new_data.keys()
-    for key in merged_keys:
+    for key in sorted(merged_keys):
         if key not in new_data:
             diff[key] = {'value': format_data(old_data[key]),
                          'status': 'removed'}
@@ -53,7 +47,7 @@ def make_diff(old_data, new_data, diff={}):
             diff[key] = {'value': {'old': format_data(old_data[key]),
                                    'new': format_data(new_data[key])},
                          'status': 'changed'}
-    return sort_diff(diff)
+    return diff
 
 
 def generate_diff(file_path1, file_path2, formatter='stylish'):
