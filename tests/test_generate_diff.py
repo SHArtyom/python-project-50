@@ -17,6 +17,7 @@ stylish_tree_result = 'tests/fixtures/stylish_tree_result.txt'
 plain_tree_result = 'tests/fixtures/plain_tree_result.txt'
 json_tree_result = 'tests/fixtures/json_tree_result.txt'
 
+
 @pytest.fixture
 def get_result():
     def _get_result(format):
