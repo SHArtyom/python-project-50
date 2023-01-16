@@ -16,14 +16,6 @@ def parse_file(file_path):
     return file
 
 
-def format_data(string):
-    if isinstance(string, dict):
-        return string
-    output = json.dumps(string)
-    output = output.replace('"', '')
-    return output
-
-
 def build_diff(old_data, new_data, diff={}):
     merged_keys = old_data.keys() | new_data.keys()
     for key in sorted(merged_keys):
