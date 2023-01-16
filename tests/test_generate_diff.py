@@ -1,39 +1,47 @@
+import pytest
 from gendiff.build_diff import generate_diff
 import os
 
+json_flat_old = os.path.abspath('tests/fixtures/file1.json')
+json_flat_new = 'tests/fixtures/file2.json'
+yml_flat_old = 'tests/fixtures/file1.yml'
+yml_flat_new = 'tests/fixtures/file2.yml'
+json_tree_old = 'tests/fixtures/tree_file1.json'
+json_tree_new = 'tests/fixtures/tree_file2.json'
+yaml_tree_old = 'tests/fixtures/tree_file1.yaml'
+yaml_tree_new = 'tests/fixtures/tree_file2.yaml'
+stylish_flat_result = 'tests/fixtures/stylish_flat_result.txt'
+plain_flat_result = 'tests/fixtures/plain_flat_result.txt'
+json_flat_result = 'tests/fixtures/json_flat_result.txt'
+stylish_tree_result = 'tests/fixtures/stylish_tree_result.txt'
+plain_tree_result = 'tests/fixtures/plain_tree_result.txt'
+json_tree_result = 'tests/fixtures/json_tree_result.txt'
 
-file1 = os.path.abspath('tests/fixtures/file1.json')  # json flat old_data
-file2 = os.path.abspath('tests/fixtures/file2.json')  # json flat new_data
-file3 = os.path.abspath('tests/fixtures/file1.yml')  # yml flat old_data
-file4 = os.path.abspath('tests/fixtures/file2.yml')  # yml flat new_data
-file5 = os.path.abspath('tests/fixtures/tree_file1.json')  # json tree old_data
-file6 = os.path.abspath('tests/fixtures/tree_file2.json')  # json tree new_data
-file7 = os.path.abspath('tests/fixtures/tree_file1.yaml')  # yaml tree old_data
-file8 = os.path.abspath('tests/fixtures/tree_file2.yaml')  # yaml tree new_data
-flat_result = os.path.abspath('tests/fixtures/flat_result.txt')  # txt flat result
-stylish_result = os.path.abspath('tests/fixtures/stylish_result.txt')  # txt tree stylish result
-plain_result = os.path.abspath('tests/fixtures/plain_result.txt')  # txt tree plain format result
-json_result = os.path.abspath('tests/fixtures/json_result.txt')  # txt tree json format result
-
-with open(flat_result, 'r') as result:
-    expected_flat = result.read()
-
-with open(stylish_result, 'r') as result:
-    expected_stylish = result.read()
-
-with open(plain_result, 'r') as result:
-    expected_plain = result.read()
-
-with open(json_result, 'r') as result:
-    expected_json = result.read()
+@pytest.fixture
+def get_result():
+    def _get_result(format):
+        with open(format, 'r') as result:
+            expected = result.read()
+        return expected
+    return _get_result
 
 
-def test_generate_diff():
-    assert generate_diff(file1, file2, 'stylish') == expected_flat[:-1]
-    assert generate_diff(file3, file4, 'stylish') == expected_flat[:-1]
-    assert generate_diff(file5, file6, 'stylish') == expected_stylish[:-1]
-    assert generate_diff(file7, file8, 'stylish') == expected_stylish[:-1]
-    assert generate_diff(file5, file6, 'plain') == expected_plain[:-1]
-    assert generate_diff(file7, file8, 'plain') == expected_plain[:-1]
-    assert generate_diff(file5, file6, 'json') == expected_json[:-1]
-    assert generate_diff(file7, file8, 'json') == expected_json[:-1]
+def test_generate_diff_stylish(get_result):
+    assert generate_diff(json_flat_old, json_flat_new, 'stylish') == get_result(stylish_flat_result)[:-1]
+    assert generate_diff(yml_flat_old, yml_flat_new, 'stylish') == get_result(stylish_flat_result)[:-1]
+    assert generate_diff(json_tree_old, json_tree_new, 'stylish') == get_result(stylish_tree_result)[:-1]
+    assert generate_diff(yaml_tree_old, yaml_tree_new, 'stylish') == get_result(stylish_tree_result)[:-1]
+
+
+def test_generate_diff_plain(get_result):
+    assert generate_diff(json_flat_old, json_flat_new, 'plain') == get_result(plain_flat_result)[:-1]
+    assert generate_diff(yml_flat_old, yml_flat_new, 'plain') == get_result(plain_flat_result)[:-1]
+    assert generate_diff(json_tree_old, json_tree_new, 'plain') == get_result(plain_tree_result)[:-1]
+    assert generate_diff(yaml_tree_old, yaml_tree_new, 'plain') == get_result(plain_tree_result)[:-1]
+
+
+def test_generate_diff_json(get_result):
+    assert generate_diff(json_flat_old, json_flat_new, 'json') == get_result(json_flat_result)[:-1]
+    assert generate_diff(yml_flat_old, yml_flat_new, 'json') == get_result(json_flat_result)[:-1]
+    assert generate_diff(json_tree_old, json_tree_new, 'json') == get_result(json_tree_result)[:-1]
+    assert generate_diff(yaml_tree_old, yaml_tree_new, 'json') == get_result(json_tree_result)[:-1]

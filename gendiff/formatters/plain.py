@@ -1,9 +1,11 @@
-def format_complex(value):
-    BOOL_TYPES = {'null', 'true', 'false', '0'}
+def to_str(value):
+    BOOL_TYPES = {True, False, 0}
     if isinstance(value, dict):
         return '[complex value]'
     elif value in BOOL_TYPES:
-        return value
+        return str(value).lower()
+    elif value is None:
+        return 'null'
     else:
         return f"'{value}'"
 
@@ -13,11 +15,11 @@ def build_plain_string(status, path, value):
         return f"Property '{'.'.join(path)}' was removed" + '\n'
     elif status == 'added':
         return f"Property '{'.'.join(path)}' was added with value: "\
-               f"{format_complex(value)}" + '\n'
+               f"{to_str(value)}" + '\n'
     elif status == 'changed':
         return f"Property '{'.'.join(path)}' was updated. "\
-               f"From {format_complex(value['old'])} to "\
-               f"{format_complex(value['new'])}" + '\n'
+               f"From {to_str(value['old'])} "\
+               f"to {to_str(value['new'])}" + '\n'
     else:
         return ''
 

@@ -1,22 +1,33 @@
-def diff_to_dict(diff):
+import json
+
+
+def format_data(string):
+    if isinstance(string, dict):
+        return string
+    output = json.dumps(string)
+    output = output.replace('"', '')
+    return output
+
+
+def modify_keys(diff):
     diff_dict = {}
     for key in diff:
         if diff[key].get('status') == 'changed':
-            diff_dict[f'- {key}'] = diff[key]['value']['old']
-            diff_dict[f'+ {key}'] = diff[key]['value']['new']
+            diff_dict[f'- {key}'] = format_data(diff[key]['value']['old'])
+            diff_dict[f'+ {key}'] = format_data(diff[key]['value']['new'])
         elif diff[key].get('status') == 'added':
-            diff_dict[f'+ {key}'] = diff[key]['value'] = diff[key]['value']
+            diff_dict[f'+ {key}'] = format_data(diff[key]['value'])
         elif diff[key].get('status') == 'removed':
-            diff_dict[f'- {key}'] = diff[key]['value'] = diff[key]['value']
+            diff_dict[f'- {key}'] = format_data(diff[key]['value'])
         elif diff[key].get('status') == 'unchanged':
-            diff_dict[f'{key}'] = diff[key]['value'] = diff[key]['value']
+            diff_dict[f'{key}'] = format_data(diff[key]['value'])
         else:
-            diff_dict[f'{key}'] = diff_to_dict(diff[key])
+            diff_dict[f'{key}'] = modify_keys(diff[key])
     return diff_dict
 
 
 def stylish(diff):
-    diff_dict = diff_to_dict(diff)
+    diff_dict = modify_keys(diff)
 
     def walk(value, depth=0):
         result = '{\n'
