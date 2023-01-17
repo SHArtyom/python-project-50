@@ -1,8 +1,7 @@
 import pytest
 from gendiff.build_diff import generate_diff
-import os
 
-json_flat_old = os.path.abspath('tests/fixtures/file1.json')
+json_flat_old = 'tests/fixtures/file1.json'
 json_flat_new = 'tests/fixtures/file2.json'
 yml_flat_old = 'tests/fixtures/file1.yml'
 yml_flat_new = 'tests/fixtures/file2.yml'
