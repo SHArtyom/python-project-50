@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 import argparse
 
 
@@ -10,7 +9,3 @@ def parse_args():
     parser.add_argument('-f', '--format', type=str, help='set format of output')
     args = parser.parse_args()
     return args
-
-
-if __name__ == '__main__':
-    parse_args()

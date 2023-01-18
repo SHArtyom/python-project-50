@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import os
-from gendiff.build_diff import generate_diff
-from gendiff.parser import parse_args
+from gendiff.diff_output import generate_diff
+from gendiff.arg_parser import parse_args
 
 
 def main():

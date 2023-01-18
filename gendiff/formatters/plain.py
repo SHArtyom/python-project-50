@@ -1,8 +1,7 @@
 def to_str(value):
-    BOOL_TYPES = {True, False, 0}
     if isinstance(value, dict):
         return '[complex value]'
-    elif value in BOOL_TYPES:
+    elif isinstance(value, bool) or value == 0:
         return str(value).lower()
     elif value is None:
         return 'null'

@@ -1,4 +1,4 @@
-from .build_diff import generate_diff
+from .diff_output import generate_diff
 
 
 __all__ = (

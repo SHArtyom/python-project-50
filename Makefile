@@ -10,7 +10,7 @@ test-coverage:
 lint:
 	poetry run flake8 gendiff
 
-build: 
+build:
 	poetry build
 
 package-install:

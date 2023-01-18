@@ -1,5 +1,5 @@
 import sys
-from gendiff.parser import parse_args
+from gendiff.arg_parser import parse_args
 
 
 def test_parse_args():
