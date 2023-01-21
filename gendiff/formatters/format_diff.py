@@ -3,7 +3,7 @@ from .plain import plain
 from .json import format_as_json
 
 
-def format_diff(diff, formatter='stylish'):
+def format_diff(diff, formatter):
     if formatter == 'plain':
         return plain(diff)
     elif formatter == 'json':
