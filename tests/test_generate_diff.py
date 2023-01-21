@@ -1,5 +1,5 @@
 import pytest
-from gendiff.diff_output import generate_diff
+from gendiff.diff import generate_diff
 
 JSON_FLAT_OLD = 'tests/fixtures/file1.json'
 JSON_FLAT_NEW = 'tests/fixtures/file2.json'
@@ -22,8 +22,16 @@ def get_result():
     def _get_result(format):
         with open(format, 'r') as result:
             expected = result.read()
-        return expected.rstrip('\n')
+        return expected
+
     return _get_result
+
+
+def test_exception():
+    with pytest.raises(Exception) as exc_info:
+        generate_diff(JSON_FLAT_OLD, JSON_FLAT_NEW, 'wrong_formatter')
+    assert str(exc_info.value) == "Inexistent output formatter, please use 'plain', " \
+                                  "'stylish' or none which equals to 'stylish'"
 
 
 def test_generate_diff_stylish(get_result):
