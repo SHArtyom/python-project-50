@@ -1,8 +1,10 @@
 def to_str(value):
     if isinstance(value, dict):
         return '[complex value]'
-    elif isinstance(value, bool) or value == 0:
+    elif isinstance(value, bool):
         return str(value).lower()
+    elif value == 0:
+        return value
     elif value is None:
         return 'null'
     else:
