@@ -13,5 +13,5 @@ def format_diff(diff, formatter):
     elif formatter is None:
         return stylish(diff)
     else:
-        raise Exception("Inexistent output formatter, please use 'plain', "
+        raise Exception(f"Inexistent output formatter, please use 'plain', "
                         "'stylish' or none which equals to 'stylish'")
