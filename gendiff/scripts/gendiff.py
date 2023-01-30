@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 import os
 from gendiff.diff import generate_diff
 from gendiff.arg_parser import parse_args
@@ -11,7 +11,6 @@ def main():
     formatter = args.format
     result = generate_diff(file1_path, file2_path, formatter)
     print(result)
-    return
 
 
 if __name__ == '__main__':

@@ -1,12 +1,13 @@
-import json
-
-
-def format_data(string):
-    if isinstance(string, dict):
-        return string
-    output = json.dumps(string)
-    output = output.replace('"', '')
-    return output
+def format_data(value):
+    if isinstance(value, dict):
+        result = value
+    elif isinstance(value, bool):
+        result = str(value).lower()
+    elif value is None:
+        result = 'null'
+    else:
+        result = str(value)
+    return result
 
 
 def modify_keys(diff):

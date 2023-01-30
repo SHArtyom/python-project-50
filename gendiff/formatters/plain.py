@@ -1,14 +1,15 @@
 def to_str(value):
     if isinstance(value, dict):
-        return '[complex value]'
+        result = '[complex value]'
     elif isinstance(value, bool):
-        return str(value).lower()
+        result = str(value).lower()
     elif value == 0:
-        return value
+        result = value
     elif value is None:
-        return 'null'
+        result = 'null'
     else:
-        return f"'{value}'"
+        result = f"'{value}'"
+    return result
 
 
 def build_plain_string(status, path, value):

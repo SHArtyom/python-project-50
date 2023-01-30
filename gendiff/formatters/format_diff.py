@@ -8,7 +8,9 @@ def format_diff(diff, formatter):
         return plain(diff)
     elif formatter == 'json':
         return format_as_json(diff)
-    elif formatter == 'stylish' or formatter is None:
+    elif formatter == 'stylish':
+        return stylish(diff)
+    elif formatter is None:
         return stylish(diff)
     else:
         raise Exception("Inexistent output formatter, please use 'plain', "

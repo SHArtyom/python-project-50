@@ -16,7 +16,6 @@ def get_file_content(input_data):
         output = json.load(file)
     elif extension == '.yaml' or extension == '.yml':
         output = yaml.load(file, Loader=SafeLoader)
-    file.close()
     return output
 
 
